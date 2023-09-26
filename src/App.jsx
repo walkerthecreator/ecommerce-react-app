@@ -6,12 +6,10 @@ import { useEffect } from "react";
 import Feed from "./pages/Feed";
 import Card from "./components/Card";
 import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
 
 
 function App() {
-
-
-
   return (
     <>
         <Navbar></Navbar>
@@ -21,6 +19,7 @@ function App() {
             <Route path="/signup" element={<SignUp/>}></Route>
             <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/" element={<Feed/>}></Route>
+            <Route path="/myprofile" element={<Profile/>}></Route>
         </Routes>
 
 

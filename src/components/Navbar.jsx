@@ -41,7 +41,7 @@ const Navbar = () => {
         {
             user.isAuth ? 
             <li className="nav-item">
-                <NavLink className="nav-link" to="/">{user.data.name}</NavLink>
+                <NavLink className="nav-link" to="/myprofile">{user.data.name}</NavLink>
             </li> 
             : 
             <>
