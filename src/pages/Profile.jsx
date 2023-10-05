@@ -7,7 +7,8 @@ const Profile = () => {
 
     const navigate = useNavigate()
 
-    const { user , setUser } = useContext(store)
+    const { user ,  setUser } = useContext(store)
+    // console.log(user)
 
     function logout(){
         setUser({ data: null, isAuth: false })
@@ -17,6 +18,13 @@ const Profile = () => {
   return (
     <>
         <h2>My Profile</h2>
+
+        <div className="container w-75 bg-secondary p-2 my-2 rounded">
+            <h2>Welcome {user.data.name} </h2>
+            <span className="badge bg-primary">{user.data.email } </span>
+        </div>
+
+        <div className="container">
         <table className="table">
   <thead>
     <tr>
@@ -46,6 +54,7 @@ const Profile = () => {
     </tr>
   </tbody>
 </table>
+</div>
 
     <button className="btn btn-danger" onClick={logout} > <AiOutlineLogout/>  logout</button>
     </>
