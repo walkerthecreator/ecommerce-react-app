@@ -5,7 +5,12 @@ const store = createContext();
 
 export const StoreProvider = ({ children }) => {
     // user auth 
-    const [user, setUser] = useState({ data: null, isAuth: false })
+
+    const localData = JSON.parse(localStorage.getItem("user"))
+
+    const [user, setUser] = useState({ 
+        data: localData ,
+        isAuth: localData ? true : false })
 
     const login = (userData) => {
         // nitin@123 , nitin
@@ -16,6 +21,7 @@ export const StoreProvider = ({ children }) => {
 
         if (userIndex !== -1) {
             if (Db[userIndex].password === password) {
+                localStorage.setItem("user", JSON.stringify({ email : Db[userIndex].email , name : Db[userIndex].name }))
                 setUser({ data: { name: Db[userIndex].name, email, password }, isAuth: true })
             }
             else {

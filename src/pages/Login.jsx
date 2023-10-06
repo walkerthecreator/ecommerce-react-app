@@ -5,16 +5,14 @@ import store from "../Context";
 const Login = () => {
 
     const [loginUser , setLoginUser ] = useState()
+    const navigate = useNavigate()
+    const { login , user } = useContext(store)
 
-  const navigate = useNavigate()
-
-  const { login , user } = useContext(store)
-
-  useEffect(()=>{
-        if(user.isAuth){
-            navigate('/')
-        }
-  } , [user])
+    useEffect(()=>{
+            if(user.isAuth){
+                navigate('/')
+            }
+    } , [user])
 
   function changeHandle(e){
             const {name , value } = e.target 
