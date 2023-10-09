@@ -1,4 +1,4 @@
-import { AiFillStar } from "react-icons/ai"
+import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 const Star = ({ratings}) => {
     return(
@@ -6,7 +6,13 @@ const Star = ({ratings}) => {
         <span>
 
         {
-            [...Array(ratings)].map((_ , index)=> (<AiFillStar key={index}/>))
+            [...Array(5)].map((_ , index)=> (
+
+                (index<ratings) ? 
+                <AiFillStar key={index}/>
+                :
+                <AiOutlineStar key={index}/>
+            ))
         }
         </span>
     )

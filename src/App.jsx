@@ -2,9 +2,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import {Route , Routes } from "react-router-dom"
 import SignUp from "./pages/Signup";
-import { useEffect } from "react";
 import Feed from "./pages/Feed";
-import Card from "./components/Card";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import SinglePage from "./pages/SinglePage";

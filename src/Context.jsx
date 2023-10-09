@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useReducer, useState } from "react"
 import Db from "./Db";
+import reducer from "./reducers/FilterReducer";
 
 const store = createContext();
 
@@ -34,6 +35,9 @@ export const StoreProvider = ({ children }) => {
             alert("invalid email")
         }
     }
+
+    //products
+    const [state, dispatch] = useReducer(reducer, { products: null, filteredData: null , singleProduct : null })
 
     // cart
 
@@ -83,7 +87,16 @@ export const StoreProvider = ({ children }) => {
     }
 
     return (
-        <store.Provider value={{ cart, addToCart, handleIncrement, handleDecrement, removeFromCart, login, user, setUser }}>
+        <store.Provider value={{ cart,
+         addToCart,
+          handleIncrement,
+           handleDecrement,
+            removeFromCart,
+             login,
+              user,
+              state , 
+              dispatch ,
+               setUser }}>
             {children}
         </store.Provider>
     )

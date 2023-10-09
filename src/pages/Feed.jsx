@@ -1,19 +1,22 @@
-import { useContext, useEffect, useReducer, useState } from "react"
+import { useContext, useEffect } from "react"
 import Card from "../components/Card"
 import store from "../Context"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
-import reducer from "../reducers/FilterReducer"
-import SinglePage from "./SinglePage"
-
+import { useNavigate } from "react-router-dom"
 const Feed = () => {
-
-    const [state, dispatch] = useReducer(reducer, { products: null, filteredData: null , singleProduct : null })
-
+     
+     const {state , dispatch} = useContext(store)
+     const navigate = useNavigate()
 
     const getData = async () => {
         let res = await fetch("https://fakestoreapi.com/products")
         res = await res.json()
         dispatch({ type: 'GET_DATA', payload: res })
+    }
+
+    const handleClick =(item) => {
+        dispatch({ type : 'GET_SINGLE' , payload : item  })
+        navigate("/product")
     }
 
     console.log(state)
@@ -61,12 +64,10 @@ const Feed = () => {
 
             <div className="container d-flex flex-wrap justify-content-around w-100 mt-5 gap-3" >
                 {
-                    // products.data?.map((item, index) => {
-                    //     return <Card key={item.id} {...item} />
-                    // })
-                    state.filteredData?.map((item, index) => {
+
+                    state.filteredData?.map((item) => {
                         return(
-                            <div role="button" key={item.id} onClick={ ()=>{ dispatch({ type : 'GET_SINGLE' , payload : item }) } }>
+                            <div role="button" key={item.id} onClick={ ()=>{ handleClick(item) } }>
                                 <Card {...item} />
                             </div>
                         ) 
