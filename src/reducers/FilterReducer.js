@@ -2,7 +2,10 @@ const reducer = (state, action) => {
 
     switch(action.type){
         case 'GET_DATA':
-            return { products : action.payload , filteredData : action.payload }
+            return {  ...state ,  products : action.payload , filteredData : action.payload }
+
+        case 'GET_SINGLE':
+            return {...state , singleProduct : action.payload }
 
         case 'FILTER':
             // eslint-disable-next-line no-case-declarations
@@ -12,14 +15,14 @@ const reducer = (state, action) => {
 
         case 'SORT_ASC' :
                 // eslint-disable-next-line no-case-declarations
-                const sortedArray = state.products.sort((a, b) => {
+                const sortedArray = state.filteredData.sort((a, b) => {
                     return a.price - b.price
                 })
                 return { ...state , filteredData : sortedArray }
                 
         case 'SORT_DSC' :
                 // eslint-disable-next-line no-case-declarations
-                const sortArray = state.products.sort((a, b) => {
+                const sortArray = state.filteredData.sort((a, b) => {
                     return b.price - a.price
                 })
                 return { ...state , filteredData : sortArray }

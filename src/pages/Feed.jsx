@@ -3,18 +3,20 @@ import Card from "../components/Card"
 import store from "../Context"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
 import reducer from "../reducers/FilterReducer"
+import SinglePage from "./SinglePage"
 
 const Feed = () => {
 
-    const [state, dispatch] = useReducer(reducer, { products: null, filteredData: null })
+    const [state, dispatch] = useReducer(reducer, { products: null, filteredData: null , singleProduct : null })
 
-    console.log("starting state", state)
 
     const getData = async () => {
         let res = await fetch("https://fakestoreapi.com/products")
         res = await res.json()
         dispatch({ type: 'GET_DATA', payload: res })
     }
+
+    console.log(state)
 
     useEffect(() => {
         getData()
@@ -63,7 +65,11 @@ const Feed = () => {
                     //     return <Card key={item.id} {...item} />
                     // })
                     state.filteredData?.map((item, index) => {
-                        return <Card key={item.id} {...item} />
+                        return(
+                            <div role="button" key={item.id} onClick={ ()=>{ dispatch({ type : 'GET_SINGLE' , payload : item }) } }>
+                                <Card {...item} />
+                            </div>
+                        ) 
                     })
                 }
             </div>

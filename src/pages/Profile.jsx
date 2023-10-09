@@ -8,10 +8,11 @@ const Profile = () => {
     const navigate = useNavigate()
 
     const { user ,  setUser } = useContext(store)
-    // console.log(user)
+
 
     function logout(){
         setUser({ data: null, isAuth: false })
+        localStorage.removeItem("user")
         navigate('/login')
     }
 

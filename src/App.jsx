@@ -7,6 +7,7 @@ import Feed from "./pages/Feed";
 import Card from "./components/Card";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import SinglePage from "./pages/SinglePage";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/signup" element={<SignUp/>}></Route>
             <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/" element={<Feed/>}></Route>
+            <Route path="/product" element={<SinglePage/>}></Route>
             <Route path="/myprofile" element={<Profile/>}></Route>
         </Routes>
 
